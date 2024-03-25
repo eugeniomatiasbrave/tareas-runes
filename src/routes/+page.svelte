@@ -20,14 +20,13 @@ $effect(()=> {
 	localStorage.setItem('todos', JSON.stringify(todos))
 });
 
-function addTodo (event: KeyboardEvent) {
+function addTodo (event:KeyboardEvent) {
 	if( event.key !== "Enter")
 return
-	const todoEl = event.target as HTMLInputElement;
-	const text = todoEl.value;
-	const done = false;
-	todos = [...todos, {text, done}];
-	todoEl.value = "";
+
+const todoEl = event.target as HTMLInputElement;
+todos.push({ done: false , text: todoEl.value })
+todoEl.value = "";
 }
 
 function editTodo(event:Event) {
@@ -81,7 +80,7 @@ function remaining (){
 	<button onclick={() => setFilter('Pendientes')}>Pendientes</button>
 	<button onclick={() => setFilter('Completas')}>Completas</button>
 </div>
-<p>{remaining()} Restantes</p>
+<p>{remaining()} Pendientes</p>
 
 <style>
 	.todos {
